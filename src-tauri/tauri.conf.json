@@ -1,17 +1,17 @@
 {
   "productName": "zuti",
   "version": "0.0.0",
-  "identifier": "com.tauri.dev",
+  "identifier": "fr.gbdx.zuti",
   "build": {
-    "beforeDevCommand": "npm run dev",
+    "beforeDevCommand": "npm run vite:dev",
     "devUrl": "http://localhost:1420",
-    "beforeBuildCommand": "npm run build",
+    "beforeBuildCommand": "npm run vite:build",
     "frontendDist": "../build"
   },
   "app": {
     "windows": [
       {
-        "title": "zuti",
+        "title": "Zuti",
         "width": 800,
         "height": 600
       }
