@@ -1,5 +1,5 @@
 import { invoke } from "@tauri-apps/api/core";
 
-export async function get_zerotier_service_token() {
+export async function getZerotierServiceToken() {
   return await invoke<string>("get_zerotier_service_token");
 }
