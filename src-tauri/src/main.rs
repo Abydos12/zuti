@@ -15,6 +15,7 @@ fn get_zerotier_service_token() -> Result<String, String> {
 
 fn main() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_http::init())
         .plugin(tauri_plugin_shell::init())
         .invoke_handler(tauri::generate_handler![get_zerotier_service_token])
         .run(tauri::generate_context!())
