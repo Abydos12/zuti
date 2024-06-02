@@ -4,23 +4,67 @@ import { fetch } from "@tauri-apps/plugin-http";
 class ZerotierApiClient {
   private service_token: string | undefined;
 
-  async getStatus() {
+  async getStatus(): Promise<NodeStatus> {
     const response = await this.request("status");
-    return (await response.json()) as NodeStatus;
+    return await response.json();
+  }
+
+  async getAllNetworks(): Promise<Network[]> {
+    const response = await this.request("network");
+    return await response.json();
+  }
+
+  async getNetworkById(id: string): Promise<Network> {
+    const response = await this.request(`network/${id}`);
+    return await response.json();
+  }
+
+  async joinNetwork(id: string): Promise<Network> {
+    const response = await this.request(`network/${id}`, "POST");
+    return await response.json();
+  }
+
+  async updateNetwork(
+    id: string,
+    options: {
+      allowDNS: boolean;
+      allowDefault: boolean;
+      allowManaged: boolean;
+      allowGlobal: boolean;
+    },
+  ): Promise<Network> {
+    const response = await this.request(`network/${id}`, "POST", options);
+    return await response.json();
+  }
+
+  async leaveNetwork(id: string): Promise<{ result: boolean }> {
+    const response = await this.request(`network/${id}`, "DELETE");
+    return await response.json();
   }
 
   private url(endpoint: string): string {
     return `http://localhost:9993/${endpoint}`;
   }
 
-  private async request(endpoint: string) {
+  private async request(
+    endpoint: string,
+    method: string = "GET",
+    body?: object,
+  ): Promise<Response> {
     if (!this.service_token) {
       this.service_token = await getZerotierServiceToken();
     }
 
-    return await fetch(this.url(endpoint), {
+    const config: RequestInit = {
+      method,
       headers: { "X-ZT1-Auth": this.service_token },
-    });
+    };
+
+    if (body) {
+      config.body = JSON.stringify(body);
+    }
+
+    return await fetch(this.url(endpoint), config);
   }
 }
 
