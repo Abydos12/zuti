@@ -1,25 +1,47 @@
 <script lang="ts">
   import "../app.css";
-  import { nodeStatus } from "$lib/stores";
+  import { nodeStatus, networks } from "$lib/stores";
   import { getTauriVersion, getVersion } from "@tauri-apps/api/app";
 </script>
 
-<header class="bg-zinc-800 p-2">
-  Address: <code>{$nodeStatus?.address}</code>
+<header class="col-span-full flex p-2 dark:bg-zinc-800">
+  &#x23c1;
+  <a href="/">Address: <code>{$nodeStatus?.address}</code></a>
+  <span class="flex-1"></span>
+  {#if $nodeStatus}
+    <code class="rounded bg-green-700 px-1 text-green-200">online</code>
+  {:else}
+    <code class="rounded bg-red-700 px-1 text-red-200">offline</code>
+  {/if}
 </header>
 
-<main class="flex-1 overflow-auto">
-  <slot></slot>
-</main>
+<div class="flex flex-1 overflow-auto">
+  <nav class="min-w-40 border-e-2 dark:border-zinc-500">
+    <ul class="dark:bg-zinc-900">
+      {#each $networks as network}
+        <li class="p-2">
+          <a href={`/networks/${network.id}`}>
+            <div>{network.name}</div>
+            <code class="text-zinc-500">{network.id}</code>
+          </a>
+        </li>
+      {:else}
+        <span>No networks</span>
+      {/each}
+    </ul>
+  </nav>
 
-<footer class="bg-zinc-800 p-2">
+  <main class="flex-1 overflow-auto p-2">
+    <slot></slot>
+  </main>
+</div>
+
+<footer class="flex justify-between p-2 dark:bg-zinc-800">
   <span>Zerotier: <code>{$nodeStatus?.version}</code></span>
   {#await getTauriVersion() then tauriVersion}
-    <!-- promise was fulfilled or not a Promise -->
     <span>Tauri: <code>{tauriVersion}</code></span>
   {/await}
   {#await getVersion() then appVersion}
-    <!-- promise was fulfilled or not a Promise -->
     <span>Zuti: <code>{appVersion}</code></span>
   {/await}
 </footer>
