@@ -3,14 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    height: 100%;
+  h1 {
+    @apply text-3xl;
   }
-  body {
-    height: 100%;
-    overflow: visible;
-    display: flex;
-    flex-direction: column;
-    @apply dark:bg-zinc-900 dark:text-zinc-200;
+
+  h2 {
+    @apply text-xl;
   }
 }
