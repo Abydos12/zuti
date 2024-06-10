@@ -2,27 +2,34 @@
   import "../app.css";
   import { nodeStatus, networks } from "$lib/stores";
   import { getTauriVersion, getVersion } from "@tauri-apps/api/app";
+  import Header from "$lib/components/Header.svelte";
+
+  import type { LayoutData } from "./$types";
+
+  export let data: LayoutData;
+  $: nodeStatus.set(data.nodeStatus);
+  $: networks.set(data.networks);
 </script>
 
-<header class="col-span-full flex p-2 dark:bg-zinc-800">
-  &#x23c1;
-  <a href="/">Address: <code>{$nodeStatus?.address}</code></a>
-  <span class="flex-1"></span>
-  {#if $nodeStatus}
-    <code class="rounded bg-green-700 px-1 text-green-200">online</code>
-  {:else}
-    <code class="rounded bg-red-700 px-1 text-red-200">offline</code>
-  {/if}
-</header>
+<Header nodeStatus={$nodeStatus} />
 
 <div class="flex flex-1 overflow-auto">
-  <nav class="min-w-40 border-e-2 dark:border-zinc-500">
-    <ul class="dark:bg-zinc-900">
+  <nav class="min-w-40 border-e-2 dark:border-zinc-800">
+    <ul>
       {#each $networks as network}
-        <li class="p-2">
+        <li
+          class="m-2 rounded border-2 p-2 hover:border-orange-500 dark:border-zinc-700 dark:bg-zinc-900"
+        >
           <a href={`/networks/${network.id}`}>
-            <div>{network.name}</div>
-            <code class="text-zinc-500">{network.id}</code>
+            <h2>{network.name}</h2>
+            <div>
+              <code class="text-zinc-400">{network.id}</code>
+            </div>
+            {#if network.status !== "OK"}
+              <div>
+                <code>{network.status}</code>
+              </div>
+            {/if}
           </a>
         </li>
       {:else}
