@@ -2,6 +2,7 @@
   import { networks, nodeStatus } from "$lib/stores";
   import type { PageData } from "./$types";
   import OnOffBadge from "$lib/components/OnOffBadge.svelte";
+  import NetworkNavLink from "$lib/components/NetworkNavLink.svelte";
 
   export let data: PageData;
   $: nodeStatus.set(data.nodeStatus);
@@ -54,6 +55,44 @@
       value={$nodeStatus?.config.settings.allowTcpFallbackRelay}
     />
   </div>
+
+  <h2>Listening On</h2>
+  <ul class="list-diamond list-inside">
+    {#each $nodeStatus?.config.settings.listeningOn || [] as address}
+      <li>
+        <code>
+          <span class="text-teal-400">
+            {address.split("/").at(0)}
+          </span>
+          <span>/</span>
+          <span class="text-sky-400">
+            {address.split("/").at(1)}
+          </span>
+        </code>
+      </li>
+    {:else}
+      <span>No networks</span>
+    {/each}
+  </ul>
+
+  <h2>Surface Addresses</h2>
+  <ul class="list-diamond list-inside">
+    {#each $nodeStatus?.config.settings.surfaceAddresses || [] as address}
+      <li>
+        <code>
+          <span class="text-teal-400">
+            {address.split("/").at(0)}
+          </span>
+          <span>/</span>
+          <span class="text-sky-400">
+            {address.split("/").at(1)}
+          </span>
+        </code>
+      </li>
+    {:else}
+      <span>No networks</span>
+    {/each}
+  </ul>
 </div>
 
 <pre>

@@ -11,3 +11,9 @@
     @apply text-xl;
   }
 }
+
+@counter-style diamond {
+  system: cyclic;
+  symbols: "\25C6";
+  suffix: " ";
+}
