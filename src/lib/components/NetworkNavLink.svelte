@@ -7,7 +7,7 @@
   $: isActive = $page.url.pathname === href;
   $: activeClass = isActive
     ? "bg-zinc-800 text-zinc-200"
-    : "border-zinc-700 bg-zinc-950 hover:bg-zinc-700 hover:text-white";
+    : "border-zinc-700 hover:bg-zinc-700 hover:text-white";
 </script>
 
 <a {href} class={`block rounded p-2 ${activeClass}`}>

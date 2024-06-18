@@ -22,5 +22,3 @@
 </div>
 
 <Footer />
-
-<style></style>

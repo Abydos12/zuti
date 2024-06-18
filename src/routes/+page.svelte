@@ -2,7 +2,6 @@
   import { networks, nodeStatus } from "$lib/stores";
   import type { PageData } from "./$types";
   import OnOffBadge from "$lib/components/OnOffBadge.svelte";
-  import NetworkNavLink from "$lib/components/NetworkNavLink.svelte";
 
   export let data: PageData;
   $: nodeStatus.set(data.nodeStatus);
@@ -57,7 +56,7 @@
   </div>
 
   <h2>Listening On</h2>
-  <ul class="list-diamond list-inside">
+  <ul class="list-inside list-diamond">
     {#each $nodeStatus?.config.settings.listeningOn || [] as address}
       <li>
         <code>
@@ -76,7 +75,7 @@
   </ul>
 
   <h2>Surface Addresses</h2>
-  <ul class="list-diamond list-inside">
+  <ul class="list-inside list-diamond">
     {#each $nodeStatus?.config.settings.surfaceAddresses || [] as address}
       <li>
         <code>
@@ -94,9 +93,3 @@
     {/each}
   </ul>
 </div>
-
-<pre>
-  <code>
-  {JSON.stringify($nodeStatus, null, 2)}
-  </code>
-</pre>
