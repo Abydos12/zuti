@@ -8,7 +8,7 @@
 <header class="col-span-full flex items-center gap-2 p-2">
   <a
     href="/"
-    class="rounded bg-zinc-900 px-2 text-2xl hover:bg-zinc-700 hover:text-orange-500"
+    class="rounded bg-zinc-800 px-2 text-2xl hover:bg-zinc-700"
     title="Home"
   >
     <span>&#x23c1;</span>

@@ -4,7 +4,7 @@
 </script>
 
 <aside class="flex flex-col gap-2 overflow-auto p-2">
-  <button class="rounded bg-zinc-800 hover:bg-zinc-700 hover:text-orange-500">
+  <button class="rounded bg-zinc-800 hover:bg-zinc-700 hover:text-white">
     + Network
   </button>
   <hr class="border-zinc-700" />
