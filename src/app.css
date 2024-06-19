@@ -17,3 +17,16 @@
   symbols: "\25C6";
   suffix: " ";
 }
+
+::-webkit-scrollbar {
+  background-color: theme("colors.zinc.800");
+  width: theme("width.2");
+}
+
+::-webkit-scrollbar-corner {
+  background-color: theme("colors.zinc.800");
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: theme("colors.zinc.600");
+}
