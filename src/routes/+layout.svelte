@@ -16,7 +16,7 @@
 
 <div class="flex flex-1 overflow-auto">
   <SideBar />
-  <main class="flex-1 overflow-auto p-2">
+  <main class="flex-1 overflow-auto rounded-s-xl bg-zinc-950 p-2">
     <slot></slot>
   </main>
 </div>

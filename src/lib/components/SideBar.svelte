@@ -3,7 +3,7 @@
   import NetworkNavLink from "$lib/components/NetworkNavLink.svelte";
 </script>
 
-<aside class="flex flex-col gap-2 overflow-auto border-e border-zinc-700 p-2">
+<aside class="flex flex-col gap-2 overflow-auto p-2">
   <button class="rounded bg-zinc-800 hover:bg-zinc-700 hover:text-orange-500">
     + Network
   </button>

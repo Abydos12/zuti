@@ -5,9 +5,7 @@
   export let nodeStatus: NodeStatus | undefined;
 </script>
 
-<header
-  class="col-span-full flex items-center gap-2 border-b border-zinc-700 p-2"
->
+<header class="col-span-full flex items-center gap-2 p-2">
   <a
     href="/"
     class="rounded bg-zinc-900 px-2 text-2xl hover:bg-zinc-700 hover:text-orange-500"
