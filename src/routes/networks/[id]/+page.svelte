@@ -7,48 +7,51 @@
   $: network = data.network;
 </script>
 
-<header class="flex items-center gap-2">
+<header class="flex items-center gap-2 rounded bg-zinc-900 p-2">
   <h1><code>{network.id}</code></h1>
 
   <span class="font-bold text-zinc-600">{network.name}</span>
+  <span class="flex-1"></span>
 
-  <div
-    class="rounded bg-zinc-800 px-2"
-    class:text-fuchsia-400={network.type === "PRIVATE"}
-    class:text-green-400={network.type === "PUBLIC"}
-  >
-    <code>{network.type}</code>
-  </div>
-
-  <div
-    class="rounded bg-zinc-800 px-2"
+  <code
+    class="rounded bg-zinc-800 px-2 font-semibold"
     class:text-green-400={network.status === "OK"}
     class:text-red-400={network.status !== "OK"}
   >
-    <code>{network.status}</code>
-  </div>
+    {network.status}
+  </code>
+
+  <code
+    class="rounded bg-zinc-800 px-2 font-semibold"
+    class:text-fuchsia-400={network.type === "PRIVATE"}
+    class:text-green-400={network.type === "PUBLIC"}
+  >
+    {network.type}
+  </code>
 </header>
 
-<h2>Settings</h2>
-<div class="flex flex-col gap-2">
-  <div>
-    <OnOffButton value={network.allowManaged} />
-    Allow Managed
-  </div>
+<div class="rounded bg-zinc-900 p-2">
+  <h2 class="font-mono font-semibold uppercase text-orange-500">Settings</h2>
+  <div class="flex flex-col gap-2">
+    <div>
+      <OnOffButton value={network.allowManaged} />
+      Allow Managed
+    </div>
 
-  <div>
-    <OnOffButton value={network.allowGlobal} />
-    Allow Global
-  </div>
+    <div>
+      <OnOffButton value={network.allowGlobal} />
+      Allow Global
+    </div>
 
-  <div>
-    <OnOffButton value={network.allowDefault} />
-    Allow Default
-  </div>
+    <div>
+      <OnOffButton value={network.allowDefault} />
+      Allow Default
+    </div>
 
-  <div>
-    <OnOffButton value={network.allowDNS} />
-    Allow DNS
+    <div>
+      <OnOffButton value={network.allowDNS} />
+      Allow DNS
+    </div>
   </div>
 </div>
 

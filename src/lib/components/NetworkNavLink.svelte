@@ -6,7 +6,7 @@
   $: href = `/networks/${network.id}`;
   $: isActive = $page.url.pathname === href;
   $: activeClass = isActive
-    ? "bg-zinc-800 text-zinc-200"
+    ? "bg-zinc-800 text-zinc-200 border-s-2 border-orange-500"
     : "border-zinc-700 hover:bg-zinc-700 hover:text-white";
 </script>
 

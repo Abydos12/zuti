@@ -3,9 +3,13 @@
 </script>
 
 {#if online === true}
-  <code class="rounded bg-green-700 px-2 text-green-200">online</code>
+  <code class="rounded bg-green-700 px-2 font-semibold text-green-100">
+    ONLINE
+  </code>
 {:else if online === false}
-  <code class="rounded bg-red-700 px-2 text-red-200">offline</code>
+  <code class="rounded bg-red-700 px-2 font-semibold text-red-100">
+    OFFLINE
+  </code>
 {:else}
-  <code class="rounded bg-zinc-700 px-2">unknown</code>
+  <code class="rounded bg-zinc-700 px-2 font-semibold"> UNKNOWN </code>
 {/if}

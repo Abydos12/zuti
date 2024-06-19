@@ -8,15 +8,16 @@
 <header class="col-span-full flex items-center gap-2 p-2">
   <a
     href="/"
-    class="rounded bg-zinc-800 px-2 text-2xl hover:bg-zinc-700"
+    class="flex flex-col rounded bg-zinc-800 px-2 text-center hover:bg-zinc-700 hover:text-white"
     title="Home"
   >
-    <span>&#x23c1;</span>
+    <span class="text-2xl leading-none">&#x23c1;</span>
+    <code class="text-xs">NODE</code>
   </a>
-  <a href="/" class="flex flex-col leading-tight">
-    <code class="font-bold text-zinc-600">ADDRESS</code>
+  <div class="flex flex-col leading-tight">
+    <code class="font-bold text-orange-500">ADDRESS</code>
     <code>{nodeStatus?.address}</code>
-  </a>
+  </div>
   <span class="flex-1"></span>
   <OnOffBadge label="TCP fallback" value={nodeStatus?.tcpFallbackActive} />
   <OnlineBadge online={nodeStatus?.online} />
