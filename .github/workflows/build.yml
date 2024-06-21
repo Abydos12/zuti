@@ -34,7 +34,5 @@ jobs:
       - name: Install frontend deps
         run: npm ci
 
-      - uses: tauri-apps/tauri-action@v0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          args: ${{ matrix.args }}
+      - name: Build bundles
+        run: npm run tauri:build -- ${{ matrix.args }}
