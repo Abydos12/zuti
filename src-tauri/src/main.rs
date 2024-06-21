@@ -8,12 +8,10 @@ use std::path::{Path, PathBuf};
 
 use directories::UserDirs;
 
-
 #[tauri::command]
 fn get_zerotier_service_token() -> Result<String, String> {
     let path = get_token_path().map_err(|e| e.to_string())?;
-    let mut file = File::open(path)
-        .map_err(|e| e.to_string())?;
+    let mut file = File::open(path).map_err(|e| e.to_string())?;
     let mut token = String::new();
     file.read_to_string(&mut token).map_err(|e| e.to_string())?;
     Ok(token)
@@ -27,7 +25,7 @@ fn get_token_path() -> Result<PathBuf, String> {
             "windows" => Ok(home.join("AppData\\Local\\ZeroTier\\authtoken.secret")),
             "linux" => Ok(Path::new("/var/lib/zerotier-one").into()),
             "macos" => Ok(home.join("Library/Application Support/ZeroTier/authtoken.secret")),
-            _ => Err("OS not supported".into())
+            _ => Err("OS not supported".into()),
         };
     } else {
         panic!("Home dir not found");
