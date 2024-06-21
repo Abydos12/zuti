@@ -4,9 +4,12 @@
 </script>
 
 <aside class="flex flex-col gap-2 overflow-auto p-2">
-  <button class="rounded bg-zinc-800 hover:bg-zinc-700 hover:text-white">
+  <a
+    href="/networks/join"
+    class="rounded bg-zinc-800 text-center hover:bg-zinc-700 hover:text-white"
+  >
     + Network
-  </button>
+  </a>
   <hr class="border-zinc-700" />
   <code class="font-bold text-orange-500">NETWORKS</code>
   <nav class="min-w-50 overflow-auto">

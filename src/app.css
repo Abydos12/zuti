@@ -10,6 +10,16 @@
   h2 {
     @apply text-xl;
   }
+  input[type="checkbox"] {
+    @apply text-orange-500 focus:ring-orange-500 focus:ring-offset-black;
+  }
+
+  input[type="text"] {
+    @apply bg-black caret-orange-500 focus:border-orange-500 focus:ring-orange-500 focus:ring-offset-black;
+  }
+  button {
+    @apply rounded bg-zinc-800 px-2 hover:bg-zinc-700 hover:text-white;
+  }
 }
 
 @counter-style diamond {

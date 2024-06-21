@@ -3,8 +3,8 @@ module.exports = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     listStyleType: {
-      diamond: "diamond"
-    }
+      diamond: "diamond",
+    },
   },
-  plugins: [require("@tailwindcss/typography")]
+  plugins: [require("@tailwindcss/forms")],
 };
