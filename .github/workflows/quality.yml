@@ -13,6 +13,12 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run prettier:check
+  check-format-tauri:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm run cargo-fmt:check
   check-build-ui:
     runs-on: ubuntu-latest
     steps:
