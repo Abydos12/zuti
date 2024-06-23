@@ -87,7 +87,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: apple-x86-dmg-package
-          path: src-tauri/target/x86_64-apple-darwin/release/bundle/dmg/*.app
+          path: src-tauri/target/x86_64-apple-darwin/release/bundle/dmg/*.dmg
 
       - name: Upload Apple aarch64 macos package
         if: matrix.platform == 'macos-latest' && matrix.args == '--target aarch64-apple-darwin'
@@ -101,4 +101,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: apple-aarch64-dmg-package
-          path: src-tauri/target/aarch64-apple-darwin/release/bundle/dmg/*.app
+          path: src-tauri/target/aarch64-apple-darwin/release/bundle/dmg/*.dmg
