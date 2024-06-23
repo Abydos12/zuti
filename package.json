@@ -13,7 +13,11 @@
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",
     "prettier": "prettier --write src",
-    "prettier:check": "prettier --check src"
+    "prettier:check": "prettier --check src",
+    "cargo-fmt": "cd src-tauri && cargo fmt",
+    "cargo-fmt:check": "cd src-tauri && cargo fmt --check",
+    "format": "npm run prettier && npm run cargo-fmt",
+    "format:check": "npm run prettier:check && npm run cargo-fmt:check"
   },
   "license": "MIT",
   "dependencies": {
