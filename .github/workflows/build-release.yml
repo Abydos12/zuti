@@ -68,11 +68,18 @@ jobs:
           name: linux-deb-package
           path: src-tauri/target/release/bundle/deb/*.deb
 
-      - name: Upload Linux AppImage package
+      - name: Upload Linux RPM package
         if: matrix.platform == 'ubuntu-22.04'
         uses: actions/upload-artifact@v4
         with:
           name: linux-rpm-package
+          path: src-tauri/target/release/bundle/rpm/*.rpm
+
+      - name: Upload Linux AppImage package
+        if: matrix.platform == 'ubuntu-22.04'
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-appimage-package
           path: src-tauri/target/release/bundle/appimage/*.AppImage
 
       - name: Upload Apple x86 macos package
