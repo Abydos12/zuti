@@ -1,6 +1,6 @@
-name: Quality
+name: Format Check
 
-on: [pull_request]
+on: [push]
 
 jobs:
   check-format-ui:
