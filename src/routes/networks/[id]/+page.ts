@@ -1,8 +1,15 @@
 import type { PageLoad } from "./$types";
 import { zerotierApi } from "$lib/zerotier/api";
+import { goto } from "$app/navigation";
 
-export const load: PageLoad = async ({ params }) => {
-  return {
-    network: await zerotierApi.getNetworkById(params.id),
-  };
+export const load: PageLoad = async ({
+  params,
+}): Promise<{ network: Network }> => {
+  const network = await zerotierApi.getNetworkById(params.id);
+
+  if (!network) {
+    await goto("/");
+  }
+
+  return { network };
 };

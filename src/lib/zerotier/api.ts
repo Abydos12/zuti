@@ -14,13 +14,21 @@ class ZerotierApiClient {
     return await response.json();
   }
 
-  async getNetworkById(id: string): Promise<Network> {
+  async getNetworkById(id: string): Promise<Network | undefined> {
     const response = await this.request(`network/${id}`);
-    return await response.json();
+    if (response.ok) {
+      return await response.json();
+    }
   }
 
-  async joinNetwork(id: string): Promise<Network> {
-    const response = await this.request(`network/${id}`, "POST");
+  async joinNetwork(
+    id: string,
+    config: Pick<
+      Network,
+      "allowManaged" | "allowGlobal" | "allowDefault" | "allowDNS"
+    >,
+  ): Promise<Network> {
+    const response = await this.request(`network/${id}`, "POST", config);
     return await response.json();
   }
 
