@@ -2,28 +2,43 @@
   import type { PageData } from "./$types";
   import OnOffButton from "$lib/components/OnOffButton.svelte";
   import { onMount } from "svelte";
-  import { invalidateAll } from "$app/navigation";
+  import { goto, invalidateAll } from "$app/navigation";
+  import { zerotierApi } from "$lib/zerotier/api";
+  import { writable } from "svelte/store";
+  import Spinner from "$lib/components/Spinner.svelte";
 
   export let data: PageData;
 
   $: network = data.network;
 
+  const leaving = writable(false);
+
   onMount(() => {
     const interval = setInterval(invalidateAll, 10_000);
     return () => clearInterval(interval);
   });
+
+  async function leave() {
+    leaving.set(true);
+    try {
+      await zerotierApi.leaveNetwork(network.id);
+      goto("/");
+    } catch (err) {
+    } finally {
+      leaving.set(false);
+    }
+  }
 </script>
 
-<header class="flex items-center gap-2 rounded bg-zinc-900 p-2">
+<header class="flex flex-wrap items-center gap-2 rounded bg-zinc-900 p-2">
   <h1><code>{network.id}</code></h1>
 
-  <span class="font-bold text-zinc-600">{network.name}</span>
-  <span class="flex-1"></span>
+  <span class="flex-1 font-bold text-zinc-600">{network.name}</span>
 
   <code
     class="rounded bg-zinc-800 px-2 font-semibold"
-    class:text-green-400={network.status === "OK"}
-    class:text-red-400={network.status !== "OK"}
+    class:text-green-500={network.status === "OK"}
+    class:text-red-500={network.status !== "OK"}
   >
     {network.status}
   </code>
@@ -35,6 +50,21 @@
   >
     {network.type}
   </code>
+
+  <button
+    class="flex items-center gap-x-2 rounded-sm bg-red-600 px-2 font-semibold hover:bg-red-800 hover:text-white hover:ring-2 hover:ring-red-500"
+    on:click={leave}
+    disabled={$leaving}
+  >
+    <span class="h-4 w-4" class:hidden={!$leaving}>
+      <Spinner />
+    </span>
+    {#if $leaving}
+      Leaving &hellip;
+    {:else}
+      Leave
+    {/if}
+  </button>
 </header>
 
 <div class="rounded bg-zinc-900 p-2">
