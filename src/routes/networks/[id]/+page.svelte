@@ -1,10 +1,17 @@
 <script lang="ts">
   import type { PageData } from "./$types";
   import OnOffButton from "$lib/components/OnOffButton.svelte";
+  import { onMount } from "svelte";
+  import { invalidateAll } from "$app/navigation";
 
   export let data: PageData;
 
   $: network = data.network;
+
+  onMount(() => {
+    const interval = setInterval(invalidateAll, 10_000);
+    return () => clearInterval(interval);
+  });
 </script>
 
 <header class="flex items-center gap-2 rounded bg-zinc-900 p-2">
