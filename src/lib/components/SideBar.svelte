@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { networks } from "$lib/stores";
   import NetworkNavLink from "$lib/components/NetworkNavLink.svelte";
+
+  export let networks: Network[] = [];
 </script>
 
-<aside class="flex flex-col gap-2 overflow-auto p-2">
+<aside class="flex min-w-48 flex-col gap-2 overflow-auto p-2">
   <a
     href="/networks/join"
     class="rounded bg-zinc-800 text-center hover:bg-zinc-700 hover:text-white"
@@ -14,7 +15,7 @@
   <code class="font-bold text-orange-500">NETWORKS</code>
   <nav class="min-w-50 overflow-auto">
     <ul class="flex flex-col gap-2">
-      {#each $networks as network}
+      {#each networks as network}
         <li>
           <NetworkNavLink {network} />
         </li>

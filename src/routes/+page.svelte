@@ -1,11 +1,6 @@
 <script lang="ts">
-  import { networks, nodeStatus } from "$lib/stores";
-  import type { PageData } from "./$types";
+  import { nodeStatus } from "$lib/stores";
   import OnOffBadge from "$lib/components/OnOffBadge.svelte";
-
-  export let data: PageData;
-  $: nodeStatus.set(data.nodeStatus);
-  $: networks.set(data.networks);
 </script>
 
 <div class="flex flex-col gap-2">
