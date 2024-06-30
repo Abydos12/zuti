@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import OnOffButton from "$lib/components/OnOffButton.svelte";
   import { onMount } from "svelte";
   import { goto, invalidateAll } from "$app/navigation";
   import { zerotierApi } from "$lib/zerotier/api";

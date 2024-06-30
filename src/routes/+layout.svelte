@@ -1,6 +1,6 @@
 <script lang="ts">
   import "../app.css";
-  import { nodeStatus, networks } from "$lib/stores";
+  import { networks, nodeStatus } from "$lib/stores";
   import Header from "$lib/components/Header.svelte";
 
   import Footer from "$lib/components/Footer.svelte";
