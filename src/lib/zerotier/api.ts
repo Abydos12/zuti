@@ -1,5 +1,6 @@
 import { getZerotierServiceToken } from "$lib/commands";
 import { fetch } from "@tauri-apps/plugin-http";
+import type { Network, NetworkUpdate, NodeStatus } from "$lib/zerotier/models";
 
 class ZerotierApiClient {
   private service_token: string | undefined;
@@ -32,15 +33,7 @@ class ZerotierApiClient {
     return await response.json();
   }
 
-  async updateNetwork(
-    id: string,
-    options: {
-      allowDNS: boolean;
-      allowDefault: boolean;
-      allowManaged: boolean;
-      allowGlobal: boolean;
-    },
-  ): Promise<Network> {
+  async updateNetwork(id: string, options: NetworkUpdate): Promise<Network> {
     const response = await this.request(`network/${id}`, "POST", options);
     return await response.json();
   }

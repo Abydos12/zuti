@@ -1,4 +1,4 @@
-import { derived, readable, writable } from "svelte/store";
+import { readable } from "svelte/store";
 import { zerotierApi } from "$lib/zerotier/api";
 
 const REFRESH_INTERVAL = 10_000;

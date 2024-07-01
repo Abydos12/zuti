@@ -23,7 +23,7 @@ fn get_token_path() -> Result<PathBuf, String> {
         home = user_dirs.home_dir();
         return match OS {
             "windows" => Ok(home.join("AppData\\Local\\ZeroTier\\authtoken.secret")),
-            "linux" => Ok(Path::new("/var/lib/zerotier-one").into()),
+            "linux" => Ok(Path::new("/var/lib/zerotier-one/authtoken.secret").into()),
             "macos" => Ok(home.join("Library/Application Support/ZeroTier/authtoken.secret")),
             _ => Err("OS not supported".into()),
         };

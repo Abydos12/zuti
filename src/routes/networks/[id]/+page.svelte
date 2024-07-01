@@ -1,17 +1,18 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import OnOffButton from "$lib/components/OnOffButton.svelte";
   import { onMount } from "svelte";
   import { goto, invalidateAll } from "$app/navigation";
   import { zerotierApi } from "$lib/zerotier/api";
   import { writable } from "svelte/store";
   import Spinner from "$lib/components/Spinner.svelte";
+  import type { NetworkUpdate } from "$lib/zerotier/models";
 
   export let data: PageData;
 
   $: network = data.network;
 
   const leaving = writable(false);
+  const updating = writable(false);
 
   onMount(() => {
     const interval = setInterval(invalidateAll, 10_000);
@@ -26,6 +27,16 @@
     } catch (err) {
     } finally {
       leaving.set(false);
+    }
+  }
+
+  async function update(options: NetworkUpdate) {
+    updating.set(true);
+    try {
+      await zerotierApi.updateNetwork(network.id, options);
+    } catch (err) {
+    } finally {
+      updating.set(false);
     }
   }
 </script>
@@ -69,26 +80,46 @@
 
 <div class="rounded bg-zinc-900 p-2">
   <h2 class="font-mono font-semibold uppercase text-orange-500">Settings</h2>
-  <div class="flex flex-col gap-2">
-    <div>
-      <OnOffButton value={network.allowManaged} />
+  <div class="flex flex-wrap gap-8">
+    <label class="flex items-center gap-2">
+      <input
+        type="checkbox"
+        checked={network.allowManaged}
+        on:change|preventDefault={async (e) =>
+          await update({ allowManaged: e.currentTarget.checked })}
+      />
       Allow Managed
-    </div>
+    </label>
 
-    <div>
-      <OnOffButton value={network.allowGlobal} />
+    <label class="flex items-center gap-2">
+      <input
+        type="checkbox"
+        checked={network.allowGlobal}
+        on:change|preventDefault={async (e) =>
+          await update({ allowGlobal: e.currentTarget.checked })}
+      />
       Allow Global
-    </div>
+    </label>
 
-    <div>
-      <OnOffButton value={network.allowDefault} />
+    <label class="flex items-center gap-2">
+      <input
+        type="checkbox"
+        checked={network.allowDefault}
+        on:change|preventDefault={async (e) =>
+          await update({ allowDefault: e.currentTarget.checked })}
+      />
       Allow Default
-    </div>
+    </label>
 
-    <div>
-      <OnOffButton value={network.allowDNS} />
+    <label class="flex items-center gap-2">
+      <input
+        type="checkbox"
+        checked={network.allowDNS}
+        on:change|preventDefault={async (e) =>
+          await update({ allowDNS: e.currentTarget.checked })}
+      />
       Allow DNS
-    </div>
+    </label>
   </div>
 </div>
 

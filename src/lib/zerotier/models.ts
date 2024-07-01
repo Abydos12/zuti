@@ -1,4 +1,4 @@
-interface NodeStatus {
+export interface NodeStatus {
   address: string;
   clock: number;
   config: {
@@ -28,7 +28,7 @@ interface NodeStatus {
   versionRev: number;
 }
 
-interface Network {
+export interface Network {
   allowDNS: boolean;
   allowDefault: boolean;
   allowManaged: boolean;
@@ -69,3 +69,7 @@ interface Network {
     | "AUTHENTICATION_REQUIRED";
   type: "PUBLIC" | "PRIVATE";
 }
+
+export type NetworkUpdate = Partial<
+  Pick<Network, "allowManaged" | "allowGlobal" | "allowDefault" | "allowDNS">
+>;
