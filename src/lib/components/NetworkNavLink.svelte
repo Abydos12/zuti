@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from "$app/stores";
+  import type { Network } from "$lib/zerotier/models";
 
   export let network: Network;
 
@@ -10,7 +11,7 @@
     : "border-zinc-700 hover:bg-zinc-700 hover:text-white";
 </script>
 
-<a {href} class={`block rounded p-2 ${activeClass}`}>
+<a {href} class="block rounded-sm px-2 {activeClass}">
   <h2>{network.name}</h2>
   <div>
     <code class="text-zinc-400">{network.id}</code>

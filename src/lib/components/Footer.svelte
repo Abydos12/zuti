@@ -3,7 +3,7 @@
   import { getTauriVersion, getVersion } from "@tauri-apps/api/app";
 </script>
 
-<footer class="flex justify-between p-2">
+<footer class="flex justify-between border-t border-zinc-600 p-2">
   <span>Zerotier: <code>{$nodeStatus?.version}</code></span>
   {#await getTauriVersion() then tauriVersion}
     <span>Tauri: <code>{tauriVersion}</code></span>

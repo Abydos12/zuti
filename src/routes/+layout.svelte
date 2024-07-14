@@ -11,11 +11,10 @@
 
 <div class="flex flex-1 overflow-auto">
   <SideBar networks={$networks} />
-  <main
-    class="flex flex-1 flex-col gap-2 overflow-auto rounded-s-xl bg-zinc-950 p-2"
-  >
-    <slot />
+  <main class="flex flex-1 flex-col overflow-auto">
+    <div class="flex flex-1 flex-col gap-2 overflow-auto rounded-sm p-2">
+      <slot />
+    </div>
+    <Footer />
   </main>
 </div>
-
-<Footer />
