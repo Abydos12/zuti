@@ -41,7 +41,9 @@
   }
 </script>
 
-<header class="flex flex-wrap items-center gap-2 rounded bg-zinc-900 p-2">
+<header
+  class="flex flex-wrap items-center gap-2 rounded-sm border border-zinc-800 bg-zinc-900 p-2"
+>
   <h1><code>{network.id}</code></h1>
 
   <span class="flex-1 font-bold text-zinc-600">{network.name}</span>
@@ -63,7 +65,7 @@
   </code>
 
   <button
-    class="flex items-center gap-x-2 rounded-sm bg-red-600 px-2 font-semibold hover:bg-red-800 hover:text-white hover:ring-2 hover:ring-red-500"
+    class="flex items-center gap-x-2 rounded-sm border-transparent bg-red-600 px-2 font-semibold hover:border-red-500 hover:bg-red-800 hover:text-white"
     on:click={leave}
     disabled={$leaving}
   >
@@ -78,7 +80,7 @@
   </button>
 </header>
 
-<div class="rounded bg-zinc-900 p-2">
+<div class="rounded-sm border border-zinc-800 bg-zinc-900 p-2">
   <h2 class="font-mono font-semibold uppercase text-orange-500">Settings</h2>
   <div class="flex flex-wrap gap-8">
     <label class="flex items-center gap-2">
@@ -141,6 +143,35 @@
     <code class="rounded bg-zinc-800 px-2">No address</code>
   {/each}
 </ul>
+
+<div>
+  <table class="table-auto">
+    <thead>
+      <tr>
+        <th>ADDRESS</th>
+        <th>MASK</th>
+      </tr>
+    </thead>
+    <tbody>
+      {#each network.assignedAddresses as address}
+        <tr>
+          <td class="border text-teal-400">
+            {address.split("/").at(0)}
+          </td>
+          <td class="border text-sky-400">
+            {address.split("/").at(1)}
+          </td>
+        </tr>
+      {:else}
+        <tr>
+          <td>
+            <code class="rounded bg-zinc-800 px-2">No address</code>
+          </td>
+        </tr>
+      {/each}
+    </tbody>
+  </table>
+</div>
 
 <pre>
   <code>

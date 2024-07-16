@@ -6,7 +6,7 @@
   export let nodeStatus: NodeStatus | undefined;
 </script>
 
-<header class="flex items-center gap-2 border-b border-zinc-600 p-2">
+<header class="flex items-center gap-2 rounded bg-zinc-900 p-2">
   <a
     href="/"
     class="flex flex-col rounded-sm bg-zinc-800 px-2 text-center hover:bg-zinc-700 hover:text-white"
@@ -23,3 +23,9 @@
   <OnOffBadge label="TCP fallback" value={nodeStatus?.tcpFallbackActive} />
   <OnlineBadge online={nodeStatus?.online} />
 </header>
+
+<style>
+  header {
+    grid-area: 1 / 1 / 1 / 4;
+  }
+</style>

@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    display: grid;
+    grid-template-columns: 16rem 1fr auto;
+    grid-template-rows: auto 1fr auto;
+    @apply gap-2;
+  }
   h1 {
     @apply text-3xl;
   }

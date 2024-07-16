@@ -5,12 +5,10 @@
   export let networks: Network[] = [];
 </script>
 
-<aside
-  class="flex min-w-48 flex-col gap-2 overflow-auto border-e border-zinc-600 p-2"
->
+<aside class="flex flex-col gap-2 overflow-auto rounded bg-zinc-900 p-2">
   <a
     href="/networks/join"
-    class="rounded-sm bg-zinc-800 text-center hover:bg-zinc-700 hover:text-white"
+    class="rounded-sm bg-zinc-800 p-2 text-center hover:bg-zinc-700 hover:text-white"
   >
     + Network
   </a>
@@ -28,3 +26,9 @@
     </ul>
   </nav>
 </aside>
+
+<style>
+  aside {
+    grid-area: 2 / 1 / 4 / 1;
+  }
+</style>

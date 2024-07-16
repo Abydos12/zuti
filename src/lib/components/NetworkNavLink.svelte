@@ -7,18 +7,24 @@
   $: href = `/networks/${network.id}`;
   $: isActive = $page.url.pathname === href;
   $: activeClass = isActive
-    ? "bg-zinc-800 text-zinc-200 border-s-2 border-orange-500"
-    : "border-zinc-700 hover:bg-zinc-700 hover:text-white";
+    ? "bg-zinc-800"
+    : "hover:bg-zinc-700 hover:text-white";
 </script>
 
-<a {href} class="block rounded-sm px-2 {activeClass}">
-  <h2>{network.name}</h2>
-  <div>
-    <code class="text-zinc-400">{network.id}</code>
-  </div>
-  {#if network.status !== "OK"}
+<a {href} class="block rounded-sm p-2 {activeClass}">
+  <div
+    class="border-s-4 ps-2 {isActive
+      ? 'border-orange-500'
+      : 'border-transparent'}"
+  >
+    <h2>{network.name}</h2>
     <div>
-      <code>{network.status}</code>
+      <code class="text-zinc-400">{network.id}</code>
     </div>
-  {/if}
+    {#if network.status !== "OK"}
+      <div>
+        <code>{network.status}</code>
+      </div>
+    {/if}
+  </div>
 </a>
