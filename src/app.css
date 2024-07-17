@@ -22,7 +22,7 @@
   }
 
   input[type="checkbox"] {
-    @apply text-orange-500 focus:ring-orange-500 focus:ring-offset-black;
+    @apply bg-transparent text-orange-500 focus:ring-orange-500 focus:ring-offset-black;
   }
 
   input[type="text"] {

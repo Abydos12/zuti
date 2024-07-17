@@ -14,7 +14,7 @@
   </a>
   <hr class="border-zinc-700" />
   <code class="font-bold text-orange-500">NETWORKS</code>
-  <nav class="min-w-50 overflow-auto">
+  <nav class="overflow-auto">
     <ul class="flex flex-col gap-2">
       {#each networks as network}
         <li>

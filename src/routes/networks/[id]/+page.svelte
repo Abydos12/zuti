@@ -6,6 +6,7 @@
   import { writable } from "svelte/store";
   import Spinner from "$lib/components/Spinner.svelte";
   import type { NetworkUpdate } from "$lib/zerotier/models";
+  import NetworkStatusBadge from "$lib/components/NetworkStatusBadge.svelte";
 
   export let data: PageData;
 
@@ -48,13 +49,7 @@
 
   <span class="flex-1 font-bold text-zinc-600">{network.name}</span>
 
-  <code
-    class="rounded bg-zinc-800 px-2 font-semibold"
-    class:text-green-500={network.status === "OK"}
-    class:text-red-500={network.status !== "OK"}
-  >
-    {network.status}
-  </code>
+  <NetworkStatusBadge status={network.status} />
 
   <code
     class="rounded bg-zinc-800 px-2 font-semibold"
@@ -145,21 +140,25 @@
 </ul>
 
 <div>
-  <table class="table-auto">
-    <thead>
+  <table class="text-left">
+    <thead class="border-b border-zinc-700">
       <tr>
-        <th>ADDRESS</th>
-        <th>MASK</th>
+        <th class="p-2">ADDRESS</th>
+        <th class="p-2">MASK</th>
       </tr>
     </thead>
     <tbody>
       {#each network.assignedAddresses as address}
-        <tr>
-          <td class="border text-teal-400">
-            {address.split("/").at(0)}
+        <tr class="border-t border-zinc-700">
+          <td class="p-2 text-teal-400">
+            <code>
+              {address.split("/").at(0)}
+            </code>
           </td>
-          <td class="border text-sky-400">
-            {address.split("/").at(1)}
+          <td class="p-2 text-sky-400">
+            <code>
+              {address.split("/").at(1)}
+            </code>
           </td>
         </tr>
       {:else}
@@ -171,6 +170,55 @@
       {/each}
     </tbody>
   </table>
+</div>
+
+<div>
+  <table class="text-left">
+    <thead class="border-b-2 border-zinc-700">
+      <tr>
+        <th class="p-2">TARGET</th>
+        <th class="p-2">VIA</th>
+      </tr>
+    </thead>
+    <tbody>
+      {#each network.routes as route}
+        <tr class="border-t border-zinc-700">
+          <td class="p-2">
+            <code>
+              {route.target}
+            </code>
+          </td>
+          <td class="p-2">
+            <code>
+              {route.via}
+            </code>
+          </td>
+        </tr>
+      {:else}
+        <tr>
+          <td>
+            <code class="rounded bg-zinc-800 px-2">No address</code>
+          </td>
+        </tr>
+      {/each}
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <ul>
+    {#each network.routes as route}
+      <li class="border-t border-zinc-700">
+        {route.target} -> {route.via}
+      </li>
+    {:else}
+      <tr>
+        <td>
+          <code class="rounded bg-zinc-800 px-2">No address</code>
+        </td>
+      </tr>
+    {/each}
+  </ul>
 </div>
 
 <pre>
