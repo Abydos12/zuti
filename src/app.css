@@ -37,14 +37,13 @@
 }
 
 ::-webkit-scrollbar {
-  background-color: theme("colors.zinc.800");
-  width: theme("width.2");
+  @apply h-2 w-2 bg-transparent;
 }
 
 ::-webkit-scrollbar-corner {
-  background-color: theme("colors.zinc.800");
+  @apply bg-transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: theme("colors.zinc.600");
+  @apply rounded bg-zinc-600;
 }
