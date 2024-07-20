@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    display: grid;
+    grid-template-columns: 16rem 1fr auto;
+    grid-template-rows: auto 1fr auto;
+    @apply gap-2;
+  }
   h1 {
     @apply text-3xl;
   }
@@ -16,7 +22,7 @@
   }
 
   input[type="checkbox"] {
-    @apply text-orange-500 focus:ring-orange-500 focus:ring-offset-black;
+    @apply bg-transparent text-orange-500 focus:ring-orange-500 focus:ring-offset-black;
   }
 
   input[type="text"] {
@@ -31,14 +37,13 @@
 }
 
 ::-webkit-scrollbar {
-  background-color: theme("colors.zinc.800");
-  width: theme("width.2");
+  @apply h-2 w-2 bg-transparent;
 }
 
 ::-webkit-scrollbar-corner {
-  background-color: theme("colors.zinc.800");
+  @apply bg-transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: theme("colors.zinc.600");
+  @apply rounded bg-zinc-600;
 }

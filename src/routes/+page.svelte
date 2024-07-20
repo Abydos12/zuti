@@ -1,6 +1,8 @@
 <script lang="ts">
   import { nodeStatus } from "$lib/stores";
   import OnOffBadge from "$lib/components/OnOffBadge.svelte";
+  import NodeListeningOnCard from "$lib/components/node/NodeListeningOnCard.svelte";
+  import NodeSurfaceAddressesCard from "$lib/components/node/NodeSurfaceAddressesCard.svelte";
 </script>
 
 <div class="flex flex-col gap-2">
@@ -50,41 +52,11 @@
     />
   </div>
 
-  <h2>Listening On</h2>
-  <ul class="list-inside list-diamond">
-    {#each $nodeStatus?.config.settings.listeningOn || [] as address}
-      <li>
-        <code>
-          <span class="text-teal-400">
-            {address.split("/").at(0)}
-          </span>
-          <span>/</span>
-          <span class="text-sky-400">
-            {address.split("/").at(1)}
-          </span>
-        </code>
-      </li>
-    {:else}
-      <span>No networks</span>
-    {/each}
-  </ul>
+  {#if $nodeStatus}
+    <NodeListeningOnCard node={$nodeStatus} />
+  {/if}
 
-  <h2>Surface Addresses</h2>
-  <ul class="list-inside list-diamond">
-    {#each $nodeStatus?.config.settings.surfaceAddresses || [] as address}
-      <li>
-        <code>
-          <span class="text-teal-400">
-            {address.split("/").at(0)}
-          </span>
-          <span>/</span>
-          <span class="text-sky-400">
-            {address.split("/").at(1)}
-          </span>
-        </code>
-      </li>
-    {:else}
-      <span>No networks</span>
-    {/each}
-  </ul>
+  {#if $nodeStatus}
+    <NodeSurfaceAddressesCard node={$nodeStatus} />
+  {/if}
 </div>

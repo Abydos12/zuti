@@ -6,6 +6,9 @@
   import { writable } from "svelte/store";
   import Spinner from "$lib/components/Spinner.svelte";
   import type { NetworkUpdate } from "$lib/zerotier/models";
+  import NetworkStatusBadge from "$lib/components/network/NetworkStatusBadge.svelte";
+  import AssignedAddressesCard from "$lib/components/network/AssignedAddressesCard.svelte";
+  import NetworkRoutesCard from "$lib/components/network/NetworkRoutesCard.svelte";
 
   export let data: PageData;
 
@@ -41,18 +44,14 @@
   }
 </script>
 
-<header class="flex flex-wrap items-center gap-2 rounded bg-zinc-900 p-2">
+<header
+  class="flex flex-wrap items-center gap-2 rounded-sm border border-zinc-800 bg-zinc-900 p-2"
+>
   <h1><code>{network.id}</code></h1>
 
   <span class="flex-1 font-bold text-zinc-600">{network.name}</span>
 
-  <code
-    class="rounded bg-zinc-800 px-2 font-semibold"
-    class:text-green-500={network.status === "OK"}
-    class:text-red-500={network.status !== "OK"}
-  >
-    {network.status}
-  </code>
+  <NetworkStatusBadge status={network.status} />
 
   <code
     class="rounded bg-zinc-800 px-2 font-semibold"
@@ -63,7 +62,7 @@
   </code>
 
   <button
-    class="flex items-center gap-x-2 rounded-sm bg-red-600 px-2 font-semibold hover:bg-red-800 hover:text-white hover:ring-2 hover:ring-red-500"
+    class="flex items-center gap-x-2 rounded-sm border-transparent bg-red-600 px-2 font-semibold hover:border-red-500 hover:bg-red-800 hover:text-white"
     on:click={leave}
     disabled={$leaving}
   >
@@ -78,7 +77,7 @@
   </button>
 </header>
 
-<div class="rounded bg-zinc-900 p-2">
+<div class="rounded-sm border border-zinc-800 bg-zinc-900 p-2">
   <h2 class="font-mono font-semibold uppercase text-orange-500">Settings</h2>
   <div class="flex flex-wrap gap-8">
     <label class="flex items-center gap-2">
@@ -123,24 +122,9 @@
   </div>
 </div>
 
-<h2>Assigned addresses</h2>
-<ul class="list-inside list-diamond">
-  {#each network.assignedAddresses as address}
-    <li>
-      <code>
-        <span class="text-teal-400">
-          {address.split("/").at(0)}
-        </span>
-        <span>/</span>
-        <span class="text-sky-400">
-          {address.split("/").at(1)}
-        </span>
-      </code>
-    </li>
-  {:else}
-    <code class="rounded bg-zinc-800 px-2">No address</code>
-  {/each}
-</ul>
+<AssignedAddressesCard {network} />
+
+<NetworkRoutesCard {network} />
 
 <pre>
   <code>

@@ -6,11 +6,15 @@
 <div class="inline-flex justify-between gap-2 rounded bg-zinc-800 text-center">
   <span class="ps-2">{label}</span>
   {#if value === true}
-    <code class="rounded bg-green-700 px-2 font-semibold text-green-100">
+    <code
+      class="rounded border-2 border-green-500 bg-green-700 bg-opacity-50 px-2 font-semibold text-green-100"
+    >
       ON
     </code>
   {:else if value === false}
-    <code class="rounded bg-red-700 px-2 font-semibold text-red-100">
+    <code
+      class="rounded border-2 border-red-500 bg-red-700 bg-opacity-50 px-2 font-semibold text-red-100"
+    >
       OFF
     </code>
   {:else}

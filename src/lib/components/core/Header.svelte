@@ -1,14 +1,15 @@
 <script lang="ts">
   import OnlineBadge from "$lib/components/OnlineBadge.svelte";
   import OnOffBadge from "$lib/components/OnOffBadge.svelte";
+  import type { NodeStatus } from "$lib/zerotier/models";
 
   export let nodeStatus: NodeStatus | undefined;
 </script>
 
-<header class="col-span-full flex items-center gap-2 p-2">
+<header class="flex items-center gap-2 rounded bg-zinc-900 p-2">
   <a
     href="/"
-    class="flex flex-col rounded bg-zinc-800 px-2 text-center hover:bg-zinc-700 hover:text-white"
+    class="flex flex-col rounded-sm bg-zinc-800 px-2 text-center hover:bg-zinc-700 hover:text-white"
     title="Home"
   >
     <span class="text-2xl leading-none">&#x23c1;</span>
@@ -22,3 +23,9 @@
   <OnOffBadge label="TCP fallback" value={nodeStatus?.tcpFallbackActive} />
   <OnlineBadge online={nodeStatus?.online} />
 </header>
+
+<style>
+  header {
+    grid-area: 1 / 1 / 1 / 4;
+  }
+</style>

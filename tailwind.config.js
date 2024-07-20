@@ -2,8 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
-    listStyleType: {
-      diamond: "diamond",
+    extend: {
+      listStyleType: {
+        square: "square",
+        diamond: "diamond",
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],
