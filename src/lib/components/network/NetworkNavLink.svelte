@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import type { Network } from "$lib/zerotier/models";
-  import NetworkStatusBadge from "$lib/components/NetworkStatusBadge.svelte";
+  import NetworkStatusBadge from "$lib/components/network/NetworkStatusBadge.svelte";
 
   export let network: Network;
 

@@ -1,10 +1,10 @@
 <script lang="ts">
   import "../app.css";
   import { networks, nodeStatus } from "$lib/stores";
-  import Header from "$lib/components/Header.svelte";
+  import Header from "$lib/components/core/Header.svelte";
 
-  import Footer from "$lib/components/Footer.svelte";
-  import SideBar from "$lib/components/SideBar.svelte";
+  import Footer from "$lib/components/core/Footer.svelte";
+  import SideBar from "$lib/components/core/SideBar.svelte";
 </script>
 
 <Header nodeStatus={$nodeStatus} />

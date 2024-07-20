@@ -1,5 +1,5 @@
 <script lang="ts">
-  import NetworkNavLink from "$lib/components/NetworkNavLink.svelte";
+  import NetworkNavLink from "$lib/components/network/NetworkNavLink.svelte";
   import type { Network } from "$lib/zerotier/models";
 
   export let networks: Network[] = [];

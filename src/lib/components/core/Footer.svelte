@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { nodeStatus } from "$lib/stores";
   import { getTauriVersion, getVersion } from "@tauri-apps/api/app";
 </script>
