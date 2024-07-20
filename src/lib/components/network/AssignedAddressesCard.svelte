@@ -8,7 +8,7 @@
   <h2 class="font-mono font-semibold uppercase text-orange-500">
     Assigned addresses
   </h2>
-  <ul class="list-square list-inside">
+  <ul class="list-inside list-square">
     {#each network.assignedAddresses as address}
       {@const [ip, mask] = address.split("/")}
       <li>
