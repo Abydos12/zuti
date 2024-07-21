@@ -49,5 +49,5 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply rounded bg-zinc-600;
+  @apply rounded bg-zinc-400 dark:bg-zinc-600;
 }

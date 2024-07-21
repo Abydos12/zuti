@@ -3,11 +3,15 @@
   import AddressPortList from "$lib/components/AddressPortList.svelte";
 
   export let node: NodeStatus;
+
+  $: addresses = node?.config.settings.surfaceAddresses ?? [];
 </script>
 
-<div class="rounded-sm border border-zinc-800 bg-zinc-900 p-2">
+<div
+  class="rounded-sm border border-zinc-300 bg-zinc-100 p-2 dark:border-zinc-800 dark:bg-zinc-900"
+>
   <h2 class="font-mono font-semibold uppercase text-orange-500">
     Surface Addresses
   </h2>
-  <AddressPortList addresses={node.config.settings.surfaceAddresses} />
+  <AddressPortList {addresses} />
 </div>

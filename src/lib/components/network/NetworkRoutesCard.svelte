@@ -4,10 +4,12 @@
   export let network: Network;
 </script>
 
-<div class="rounded-sm border border-zinc-800 bg-zinc-900 p-2">
+<div
+  class="rounded-sm border border-zinc-200 bg-zinc-100 p-2 dark:border-zinc-800 dark:bg-zinc-900"
+>
   <h2 class="font-mono font-semibold uppercase text-orange-500">Routes</h2>
   <table class="text-start">
-    <tbody class="divide-y divide-zinc-700">
+    <tbody class="divide-y divide-zinc-400 dark:divide-zinc-700">
       {#each network.routes as route}
         {@const { target, via } = route}
         <tr>

@@ -19,7 +19,7 @@
 </script>
 
 <code
-  class="rounded border-2 px-2 font-semibold dark:bg-opacity-50 {badgeClass}"
+  class="rounded border-2 px-2 font-semibold dark:bg-opacity-75 {badgeClass}"
 >
   {statusText}
 </code>
