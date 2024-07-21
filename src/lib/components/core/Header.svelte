@@ -7,11 +7,11 @@
 </script>
 
 <header
-  class="flex items-center gap-2 rounded bg-zinc-200 p-2 dark:bg-zinc-900"
+  class="flex items-center gap-2 rounded bg-zinc-100 p-2 [grid-area:header] dark:bg-zinc-900"
 >
   <a
     href="/"
-    class="flex flex-col rounded-sm bg-zinc-300 px-2 text-center hover:bg-zinc-400 dark:bg-zinc-800 hover:dark:bg-zinc-700 hover:dark:text-white"
+    class="flex flex-col rounded-sm bg-zinc-200 px-2 text-center hover:bg-zinc-300 dark:bg-zinc-800 hover:dark:bg-zinc-700 hover:dark:text-white"
     title="Home"
   >
     <span class="text-2xl leading-none">&#x23c1;</span>
@@ -25,9 +25,3 @@
   <OnOffBadge label="TCP fallback" value={nodeStatus?.tcpFallbackActive} />
   <OnlineBadge online={nodeStatus?.online} />
 </header>
-
-<style>
-  header {
-    grid-area: 1 / 1 / 1 / 4;
-  }
-</style>

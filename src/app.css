@@ -7,6 +7,10 @@
     display: grid;
     grid-template-columns: 16rem 1fr auto;
     grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "header header header"
+      "sidebar main main"
+      "sidebar footer footer";
     @apply gap-2;
   }
   h1 {
