@@ -30,7 +30,7 @@
   }
 
   input[type="text"] {
-    @apply rounded-sm bg-black caret-orange-500 focus:border-orange-500 focus:ring focus:ring-orange-500/40 focus:ring-offset-black;
+    @apply rounded-sm caret-orange-500 focus:border-orange-500 focus:ring focus:ring-orange-500/40 focus:ring-offset-black dark:bg-black;
   }
 }
 
