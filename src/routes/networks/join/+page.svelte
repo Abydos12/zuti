@@ -21,7 +21,7 @@
       await zerotierApi.joinNetwork(networkId, networkSettings);
       goto(networkId);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       loading.set(false);
     }
@@ -33,7 +33,7 @@
 {:else}
   <form
     class="m-4 flex flex-col items-center gap-4"
-    on:submit|preventDefault={() => joinNetwork()}
+    on:submit|preventDefault={joinNetwork}
   >
     <input
       type="text"
@@ -46,7 +46,7 @@
     />
     <button
       type="submit"
-      class="rounded-sm bg-zinc-800 px-4 py-1 hover:bg-zinc-700 hover:text-white"
+      class="rounded-sm bg-zinc-200 px-4 py-1 text-center hover:bg-zinc-300 dark:bg-zinc-800 hover:dark:bg-zinc-700 hover:dark:text-white"
     >
       Join
     </button>

@@ -11,7 +11,7 @@
 
 <SideBar networks={$networks} />
 
-<main class="flex flex-1 flex-col gap-2 overflow-auto bg-zinc-950">
+<main class="flex flex-1 flex-col gap-2 overflow-auto [grid-area:main]">
   <slot />
 </main>
 
