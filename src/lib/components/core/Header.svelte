@@ -2,6 +2,8 @@
   import OnlineBadge from "$lib/components/OnlineBadge.svelte";
   import OnOffBadge from "$lib/components/OnOffBadge.svelte";
   import type { NodeStatus } from "$lib/zerotier/models";
+  import Icon from "$lib/components/Icon.svelte";
+  import ThemeToggle from "$lib/components/ThemeToggle.svelte";
 
   export let nodeStatus: NodeStatus | undefined;
 </script>
@@ -24,4 +26,5 @@
   <span class="flex-1"></span>
   <OnOffBadge label="TCP fallback" value={nodeStatus?.tcpFallbackActive} />
   <OnlineBadge online={nodeStatus?.online} />
+  <ThemeToggle />
 </header>
