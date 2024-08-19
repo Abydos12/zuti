@@ -12,7 +12,7 @@ tauri-build = { version = "2.0.0-rc.3", features = [] }
 
 [dependencies]
 directories = "5.0.1"
-tauri = { version = "2.0.0-rc.0", features = [] }
+tauri = { version = "2.0.0-rc.3", features = [] }
 tauri-plugin-shell = "2.0.0-rc.0"
 tauri-plugin-http = "2.0.0-rc.0"
 serde = { version = "1", features = ["derive"] }
