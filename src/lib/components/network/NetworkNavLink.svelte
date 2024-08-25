@@ -7,7 +7,9 @@
 
   $: href = `/networks/${network.id}`;
   $: isActive = $page.url.pathname === href;
-  $: activeClass = isActive ? "bg-zinc-800" : "hover:bg-zinc-700";
+  $: activeClass = isActive
+    ? "bg-zinc-200 dark:bg-zinc-800"
+    : "hover:bg-zinc-300 hover:dark:bg-zinc-700";
 </script>
 
 <a {href} class="block rounded-sm p-2 {activeClass} group">
@@ -22,7 +24,7 @@
     </div>
     <div>
       <small class="text-orange-500">ID:</small>
-      <code class="text-zinc-400">{network.id}</code>
+      <code class="text-zinc-800 dark:text-zinc-400">{network.id}</code>
     </div>
     <div>
       <small class="text-orange-500">STATUS:</small>

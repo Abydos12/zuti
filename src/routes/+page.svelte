@@ -8,9 +8,11 @@
 <div class="flex flex-col gap-2">
   <header class="flex items-center gap-2">
     <h1>Node status</h1>
-    <div class="inline-flex justify-between gap-2 rounded bg-zinc-800 px-2">
+    <div
+      class="inline-flex justify-between gap-2 rounded bg-zinc-300 px-2 dark:bg-zinc-800"
+    >
       <span>Planet</span>
-      <code class="text-purple-400">
+      <code class="text-purple-500">
         {$nodeStatus?.planetWorldId}
       </code>
     </div>
@@ -18,23 +20,29 @@
 
   <h2>Ports</h2>
   <div class="flex flex-wrap gap-2">
-    <div class="inline-flex justify-between gap-2 rounded bg-zinc-800 px-2">
+    <div
+      class="inline-flex justify-between gap-2 rounded bg-zinc-300 px-2 dark:bg-zinc-800"
+    >
       <span>Primary</span>
-      <code class="text-orange-400">
+      <code class="text-orange-500">
         {$nodeStatus?.config.settings.primaryPort}
       </code>
     </div>
 
-    <div class="inline-flex justify-between gap-2 rounded bg-zinc-800 px-2">
+    <div
+      class="inline-flex justify-between gap-2 rounded bg-zinc-300 px-2 dark:bg-zinc-800"
+    >
       <span>Secondary</span>
-      <code class="text-orange-400">
+      <code class="text-orange-500">
         {$nodeStatus?.config.settings.secondaryPort}
       </code>
     </div>
 
-    <div class="inline-flex justify-between gap-2 rounded bg-zinc-800 px-2">
+    <div
+      class="inline-flex justify-between gap-2 rounded bg-zinc-300 px-2 dark:bg-zinc-800"
+    >
       <span>Tertiary</span>
-      <code class="text-orange-400">
+      <code class="text-orange-500">
         {$nodeStatus?.config.settings.tertiaryPort}
       </code>
     </div>

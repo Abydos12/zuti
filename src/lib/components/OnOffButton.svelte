@@ -2,7 +2,7 @@
   export let value: boolean | undefined;
 </script>
 
-<button class="inline-flex justify-between rounded bg-zinc-800" on:click>
+<button class="inline-flex justify-between rounded dark:bg-zinc-800" on:click>
   <code
     class="rounded px-2"
     class:bg-green-700={value}

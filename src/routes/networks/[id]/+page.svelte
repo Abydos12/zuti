@@ -45,24 +45,28 @@
 </script>
 
 <header
-  class="flex flex-wrap items-center gap-2 rounded-sm border border-zinc-800 bg-zinc-900 p-2"
+  class="flex flex-wrap items-center gap-2 rounded-sm border border-zinc-200 bg-zinc-100 p-2 dark:border-zinc-800 dark:bg-zinc-900"
 >
   <h1><code>{network.id}</code></h1>
 
-  <span class="flex-1 font-bold text-zinc-600">{network.name}</span>
+  <span class="flex-1 font-bold text-zinc-400 dark:text-zinc-600">
+    {network.name}
+  </span>
 
   <NetworkStatusBadge status={network.status} />
 
   <code
-    class="rounded bg-zinc-800 px-2 font-semibold"
-    class:text-fuchsia-400={network.type === "PRIVATE"}
-    class:text-green-400={network.type === "PUBLIC"}
+    class="rounded-sm bg-zinc-300 px-2 font-semibold dark:bg-zinc-800"
+    class:dark:text-fuchsia-400={network.type === "PRIVATE"}
+    class:text-fuchsia-600={network.type === "PRIVATE"}
+    class:dark:text-green-400={network.type === "PUBLIC"}
+    class:text-green-600={network.type === "PUBLIC"}
   >
     {network.type}
   </code>
 
   <button
-    class="flex items-center gap-x-2 rounded-sm border-transparent bg-red-600 px-2 font-semibold hover:border-red-500 hover:bg-red-800 hover:text-white"
+    class="flex items-center gap-x-2 rounded-sm bg-red-600 px-2 font-semibold text-red-100 hover:bg-red-800 hover:text-white"
     on:click={leave}
     disabled={$leaving}
   >
@@ -77,7 +81,9 @@
   </button>
 </header>
 
-<div class="rounded-sm border border-zinc-800 bg-zinc-900 p-2">
+<div
+  class="rounded-sm border border-zinc-200 bg-zinc-100 p-2 dark:border-zinc-800 dark:bg-zinc-900"
+>
   <h2 class="font-mono font-semibold uppercase text-orange-500">Settings</h2>
   <div class="flex flex-wrap gap-8">
     <label class="flex items-center gap-2">
