@@ -3,40 +3,43 @@ name: Build Release
 on:
   push:
     branches:
-      - release/**
+      - release
   workflow_dispatch:
 
 jobs:
-  build:
+  publish-tauri:
+    permissions:
+      contents: write
     strategy:
       fail-fast: false
       matrix:
         include:
-          - platform: "macos-latest" # for Arm based macs (M1 and above).
-            args: "--target aarch64-apple-darwin"
-          - platform: "macos-latest" # for Intel based macs.
-            args: "--target x86_64-apple-darwin"
-          - platform: "ubuntu-22.04"
-            args: ""
-          - platform: "windows-latest"
-            args: ""
+          - platform: 'macos-latest' # for Arm based macs (M1 and above).
+            args: '--target aarch64-apple-darwin'
+          - platform: 'macos-latest' # for Intel based macs.
+            args: '--target x86_64-apple-darwin'
+          - platform: 'ubuntu-22.04'
+            args: ''
+          - platform: 'ubuntu-22.04-arm' # Only available in public repos.
+            args: ''
+          - platform: 'windows-latest'
+            args: ''
+            
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - name: install dependencies (ubuntu only)
-        if: matrix.platform == 'ubuntu-22.04' # This must match the platform value defined above.
+       - name: install dependencies (ubuntu only)
+        if: matrix.platform == 'ubuntu-22.04' || matrix.platform == 'ubuntu-22.04-arm' # This must match the platform value defined above.
         run: |
           sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf xdg-utils
 
-      - uses: actions/setup-node@v4
+      - name: setup node
+        uses: actions/setup-node@v6
         with:
-          node-version-file: .node-version
-          cache: "npm"
-
-      - name: Install frontend deps
-        run: npm ci
+          node-version: lts/*
+          cache: 'npm' # Set this to npm, yarn or pnpm.
 
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@stable
@@ -47,70 +50,20 @@ jobs:
       - name: Rust cache
         uses: swatinem/rust-cache@v2
         with:
-          workspaces: "./src-tauri -> target"
+          # This matches tauri's default project layout. Change this if you have a different layout.
+          workspaces: './src-tauri -> target'
 
-      - name: Build bundles
-        run: npm run tauri:build -- ${{ matrix.args }}
+      - name: install frontend dependencies
+        # If you don't have `beforeBuildCommand` configured you may want to build your frontend here too.
+        run: npm install # change this to npm, yarn or pnpm depending on which one you use.
 
-      - name: Upload Windows MSI installer
-        if: matrix.platform == 'windows-latest'
-        uses: actions/upload-artifact@v4
+      - uses: tauri-apps/tauri-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: windows-msi-installer
-          path: src-tauri/target/release/bundle/msi/*.msi
-
-      - name: Upload Windows NSIS installer
-        if: matrix.platform == 'windows-latest'
-        uses: actions/upload-artifact@v4
-        with:
-          name: windows-nsis-installer
-          path: src-tauri/target/release/bundle/nsis/*.exe
-
-      - name: Upload Linux DEB package
-        if: matrix.platform == 'ubuntu-22.04'
-        uses: actions/upload-artifact@v4
-        with:
-          name: linux-deb-package
-          path: src-tauri/target/release/bundle/deb/*.deb
-
-      - name: Upload Linux RPM package
-        if: matrix.platform == 'ubuntu-22.04'
-        uses: actions/upload-artifact@v4
-        with:
-          name: linux-rpm-package
-          path: src-tauri/target/release/bundle/rpm/*.rpm
-
-      - name: Upload Linux AppImage package
-        if: matrix.platform == 'ubuntu-22.04'
-        uses: actions/upload-artifact@v4
-        with:
-          name: linux-appimage-package
-          path: src-tauri/target/release/bundle/appimage/*.AppImage
-
-      - name: Upload Apple x86 macos package
-        if: matrix.platform == 'macos-latest' && matrix.args == '--target x86_64-apple-darwin'
-        uses: actions/upload-artifact@v4
-        with:
-          name: apple-x86-macos-package
-          path: src-tauri/target/x86_64-apple-darwin/release/bundle/macos/zuti.app
-
-      - name: Upload Apple x86 dmg package
-        if: matrix.platform == 'macos-latest' && matrix.args == '--target x86_64-apple-darwin'
-        uses: actions/upload-artifact@v4
-        with:
-          name: apple-x86-dmg-package
-          path: src-tauri/target/x86_64-apple-darwin/release/bundle/dmg/*.dmg
-
-      - name: Upload Apple aarch64 macos package
-        if: matrix.platform == 'macos-latest' && matrix.args == '--target aarch64-apple-darwin'
-        uses: actions/upload-artifact@v4
-        with:
-          name: apple-aarch64-macos-package
-          path: src-tauri/target/aarch64-apple-darwin/release/bundle/macos/zuti.app
-
-      - name: Upload Apple aarch64 dmg package
-        if: matrix.platform == 'macos-latest' && matrix.args == '--target aarch64-apple-darwin'
-        uses: actions/upload-artifact@v4
-        with:
-          name: apple-aarch64-dmg-package
-          path: src-tauri/target/aarch64-apple-darwin/release/bundle/dmg/*.dmg
+          tagName: app-v__VERSION__ # the action automatically replaces __VERSION__ with the app version.
+          releaseName: 'App v__VERSION__'
+          releaseBody: 'See the assets to download this version and install.'
+          releaseDraft: true
+          prerelease: false
+          args: ${{ matrix.args }}
