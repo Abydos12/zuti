@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createBubbler } from 'svelte/legacy';
+  import { createBubbler } from "svelte/legacy";
 
   const bubble = createBubbler();
   interface Props {
@@ -9,7 +9,10 @@
   let { value }: Props = $props();
 </script>
 
-<button class="inline-flex justify-between rounded-sm dark:bg-zinc-800" onclick={bubble('click')}>
+<button
+  class="inline-flex justify-between rounded-sm dark:bg-zinc-800"
+  onclick={bubble("click")}
+>
   <code
     class="rounded-sm px-2"
     class:bg-green-700={value}

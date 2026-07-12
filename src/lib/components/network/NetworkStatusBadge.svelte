@@ -7,7 +7,6 @@
 
   let { status }: Props = $props();
 
-
   function switchClass(s: Network["status"]): string {
     switch (s) {
       case "OK":

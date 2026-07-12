@@ -11,9 +11,11 @@
 
   let href = $derived(`/networks/${network.id}`);
   let isActive = $derived($page.url.pathname === href);
-  let activeClass = $derived(isActive
-    ? "bg-zinc-200 dark:bg-zinc-800"
-    : "hover:bg-zinc-300 dark:hover:bg-zinc-700");
+  let activeClass = $derived(
+    isActive
+      ? "bg-zinc-200 dark:bg-zinc-800"
+      : "hover:bg-zinc-300 dark:hover:bg-zinc-700",
+  );
 </script>
 
 <a {href} class="block rounded-xs p-2 {activeClass} group">

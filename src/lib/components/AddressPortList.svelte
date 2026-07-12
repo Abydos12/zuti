@@ -6,17 +6,19 @@
   let { addresses = [] }: Props = $props();
 
   // group ports by ip
-  let group = $derived(addresses.reduce(
-    (acc, address) => {
-      const [ip, port] = address.split("/");
-      if (!(ip in acc)) {
-        acc[ip] = [];
-      }
-      acc[ip].push(port);
-      return acc;
-    },
-    {} as { [ip: string]: string[] },
-  ));
+  let group = $derived(
+    addresses.reduce(
+      (acc, address) => {
+        const [ip, port] = address.split("/");
+        if (!(ip in acc)) {
+          acc[ip] = [];
+        }
+        acc[ip].push(port);
+        return acc;
+      },
+      {} as { [ip: string]: string[] },
+    ),
+  );
 </script>
 
 <ul class="flex flex-wrap gap-2">

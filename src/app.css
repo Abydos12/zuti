@@ -1,14 +1,14 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@plugin '@tailwindcss/forms';
+@plugin "@tailwindcss/forms";
 
 @custom-variant dark {
   @media (prefers-color-scheme: dark) {
-    &:not([data-theme='light'] *) {
+    &:not([data-theme="light"] *) {
       @slot;
     }
   }
-  &:is([data-theme='dark'] *) {
+  &:is([data-theme="dark"] *) {
     @slot;
   }
 }

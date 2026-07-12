@@ -6,7 +6,7 @@
   import Footer from "$lib/components/core/Footer.svelte";
   import SideBar from "$lib/components/core/SideBar.svelte";
   interface Props {
-    children?: import('svelte').Snippet;
+    children?: import("svelte").Snippet;
   }
 
   let { children }: Props = $props();

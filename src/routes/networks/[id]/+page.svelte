@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { preventDefault } from 'svelte/legacy';
+  import { preventDefault } from "svelte/legacy";
 
   import type { PageData } from "./$types";
   import { onMount } from "svelte";
@@ -96,8 +96,9 @@
       <input
         type="checkbox"
         checked={network.allowManaged}
-        onchange={preventDefault(async (e) =>
-          await update({ allowManaged: e.currentTarget.checked }))}
+        onchange={preventDefault(
+          async (e) => await update({ allowManaged: e.currentTarget.checked }),
+        )}
       />
       Allow Managed
     </label>
@@ -106,8 +107,9 @@
       <input
         type="checkbox"
         checked={network.allowGlobal}
-        onchange={preventDefault(async (e) =>
-          await update({ allowGlobal: e.currentTarget.checked }))}
+        onchange={preventDefault(
+          async (e) => await update({ allowGlobal: e.currentTarget.checked }),
+        )}
       />
       Allow Global
     </label>
@@ -116,8 +118,9 @@
       <input
         type="checkbox"
         checked={network.allowDefault}
-        onchange={preventDefault(async (e) =>
-          await update({ allowDefault: e.currentTarget.checked }))}
+        onchange={preventDefault(
+          async (e) => await update({ allowDefault: e.currentTarget.checked }),
+        )}
       />
       Allow Default
     </label>
@@ -126,8 +129,9 @@
       <input
         type="checkbox"
         checked={network.allowDNS}
-        onchange={preventDefault(async (e) =>
-          await update({ allowDNS: e.currentTarget.checked }))}
+        onchange={preventDefault(
+          async (e) => await update({ allowDNS: e.currentTarget.checked }),
+        )}
       />
       Allow DNS
     </label>

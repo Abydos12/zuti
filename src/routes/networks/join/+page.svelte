@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { preventDefault } from 'svelte/legacy';
+  import { preventDefault } from "svelte/legacy";
 
   import { zerotierApi } from "$lib/zerotier/api";
   import { networkIdPattern } from "$lib/patterns";

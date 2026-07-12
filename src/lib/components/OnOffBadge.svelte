@@ -6,7 +6,6 @@
 
   let { label, value }: Props = $props();
 
-
   function switchBadgeClass(_value: boolean | undefined) {
     switch (_value) {
       case true:
