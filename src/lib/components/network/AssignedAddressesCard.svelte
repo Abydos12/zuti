@@ -1,7 +1,11 @@
 <script lang="ts">
   import type { Network } from "$lib/zerotier/models";
 
-  export let network: Network;
+  interface Props {
+    network: Network;
+  }
+
+  let { network }: Props = $props();
 </script>
 
 <div

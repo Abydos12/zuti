@@ -5,7 +5,11 @@
   import Icon from "$lib/components/Icon.svelte";
   import ThemeToggle from "$lib/components/ThemeToggle.svelte";
 
-  export let nodeStatus: NodeStatus | undefined;
+  interface Props {
+    nodeStatus: NodeStatus | undefined;
+  }
+
+  let { nodeStatus }: Props = $props();
 </script>
 
 <header

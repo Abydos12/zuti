@@ -1,8 +1,11 @@
 <script lang="ts">
-  export let label: string;
-  export let value: boolean | undefined;
+  interface Props {
+    label: string;
+    value: boolean | undefined;
+  }
 
-  $: badgeClass = switchBadgeClass(value);
+  let { label, value }: Props = $props();
+
 
   function switchBadgeClass(_value: boolean | undefined) {
     switch (_value) {
@@ -14,6 +17,7 @@
         return "border-zinc-500 bg-zinc-700 text-zinc-100";
     }
   }
+  let badgeClass = $derived(switchBadgeClass(value));
 </script>
 
 <div

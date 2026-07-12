@@ -2,9 +2,13 @@
   import type { NodeStatus } from "$lib/zerotier/models";
   import AddressPortList from "$lib/components/AddressPortList.svelte";
 
-  export let node: NodeStatus;
+  interface Props {
+    node: NodeStatus;
+  }
 
-  $: addresses = node?.config.settings.surfaceAddresses ?? [];
+  let { node }: Props = $props();
+
+  let addresses = $derived(node?.config.settings.surfaceAddresses ?? []);
 </script>
 
 <div

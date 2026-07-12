@@ -5,6 +5,11 @@
 
   import Footer from "$lib/components/core/Footer.svelte";
   import SideBar from "$lib/components/core/SideBar.svelte";
+  interface Props {
+    children?: import('svelte').Snippet;
+  }
+
+  let { children }: Props = $props();
 </script>
 
 <Header nodeStatus={$nodeStatus} />
@@ -12,7 +17,7 @@
 <SideBar networks={$networks} />
 
 <main class="flex flex-1 flex-col gap-2 overflow-auto [grid-area:main]">
-  <slot />
+  {@render children?.()}
 </main>
 
 <Footer />

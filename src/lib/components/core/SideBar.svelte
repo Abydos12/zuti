@@ -2,7 +2,11 @@
   import NetworkNavLink from "$lib/components/network/NetworkNavLink.svelte";
   import type { Network } from "$lib/zerotier/models";
 
-  export let networks: Network[] = [];
+  interface Props {
+    networks?: Network[];
+  }
+
+  let { networks = [] }: Props = $props();
 </script>
 
 <aside

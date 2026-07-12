@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { preventDefault } from 'svelte/legacy';
+
   import type { PageData } from "./$types";
   import { onMount } from "svelte";
   import { goto, invalidateAll } from "$app/navigation";
@@ -10,9 +12,13 @@
   import AssignedAddressesCard from "$lib/components/network/AssignedAddressesCard.svelte";
   import NetworkRoutesCard from "$lib/components/network/NetworkRoutesCard.svelte";
 
-  export let data: PageData;
+  interface Props {
+    data: PageData;
+  }
 
-  $: network = data.network;
+  let { data }: Props = $props();
+
+  let network = $derived(data.network);
 
   const leaving = writable(false);
   const updating = writable(false);
@@ -67,7 +73,7 @@
 
   <button
     class="flex items-center gap-x-2 rounded-sm bg-red-600 px-2 font-semibold text-red-100 hover:bg-red-800 hover:text-white"
-    on:click={leave}
+    onclick={leave}
     disabled={$leaving}
   >
     <span class="h-4 w-4" class:hidden={!$leaving}>
@@ -90,8 +96,8 @@
       <input
         type="checkbox"
         checked={network.allowManaged}
-        on:change|preventDefault={async (e) =>
-          await update({ allowManaged: e.currentTarget.checked })}
+        onchange={preventDefault(async (e) =>
+          await update({ allowManaged: e.currentTarget.checked }))}
       />
       Allow Managed
     </label>
@@ -100,8 +106,8 @@
       <input
         type="checkbox"
         checked={network.allowGlobal}
-        on:change|preventDefault={async (e) =>
-          await update({ allowGlobal: e.currentTarget.checked })}
+        onchange={preventDefault(async (e) =>
+          await update({ allowGlobal: e.currentTarget.checked }))}
       />
       Allow Global
     </label>
@@ -110,8 +116,8 @@
       <input
         type="checkbox"
         checked={network.allowDefault}
-        on:change|preventDefault={async (e) =>
-          await update({ allowDefault: e.currentTarget.checked })}
+        onchange={preventDefault(async (e) =>
+          await update({ allowDefault: e.currentTarget.checked }))}
       />
       Allow Default
     </label>
@@ -120,8 +126,8 @@
       <input
         type="checkbox"
         checked={network.allowDNS}
-        on:change|preventDefault={async (e) =>
-          await update({ allowDNS: e.currentTarget.checked })}
+        onchange={preventDefault(async (e) =>
+          await update({ allowDNS: e.currentTarget.checked }))}
       />
       Allow DNS
     </label>

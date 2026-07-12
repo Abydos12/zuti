@@ -1,8 +1,12 @@
 <script lang="ts">
-  export let addresses: string[] = [];
+  interface Props {
+    addresses?: string[];
+  }
+
+  let { addresses = [] }: Props = $props();
 
   // group ports by ip
-  $: group = addresses.reduce(
+  let group = $derived(addresses.reduce(
     (acc, address) => {
       const [ip, port] = address.split("/");
       if (!(ip in acc)) {
@@ -12,7 +16,7 @@
       return acc;
     },
     {} as { [ip: string]: string[] },
-  );
+  ));
 </script>
 
 <ul class="flex flex-wrap gap-2">

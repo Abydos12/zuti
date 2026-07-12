@@ -1,9 +1,13 @@
 <script lang="ts">
   import { icons } from "$lib/constants";
 
-  export let name: keyof typeof icons;
+  interface Props {
+    name: keyof typeof icons;
+  }
 
-  $: icon = icons[name];
+  let { name }: Props = $props();
+
+  let icon = $derived(icons[name]);
 </script>
 
 <svg

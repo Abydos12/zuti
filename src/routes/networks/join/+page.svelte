@@ -1,19 +1,21 @@
 <script lang="ts">
+  import { preventDefault } from 'svelte/legacy';
+
   import { zerotierApi } from "$lib/zerotier/api";
   import { networkIdPattern } from "$lib/patterns";
   import { goto } from "$app/navigation";
   import { writable } from "svelte/store";
 
-  const networkSettings = {
+  const networkSettings = $state({
     allowManaged: true,
     allowGlobal: false,
     allowDefault: false,
     allowDNS: false,
-  };
+  });
 
   const loading = writable(false);
 
-  let networkId: string = "";
+  let networkId: string = $state("");
 
   async function joinNetwork() {
     loading.set(true);
@@ -33,7 +35,7 @@
 {:else}
   <form
     class="m-4 flex flex-col items-center gap-4"
-    on:submit|preventDefault={joinNetwork}
+    onsubmit={preventDefault(joinNetwork)}
   >
     <input
       type="text"

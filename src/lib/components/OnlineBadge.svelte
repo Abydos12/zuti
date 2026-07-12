@@ -1,10 +1,11 @@
 <script lang="ts">
-  export let online: boolean | undefined;
+  interface Props {
+    online: boolean | undefined;
+  }
 
-  $: statusText =
-    online === true ? "ONLINE" : online === false ? "OFFLINE" : "UNKNOWN";
+  let { online }: Props = $props();
 
-  $: badgeClass = switchBadgeClass(online);
+
 
   function switchBadgeClass(_online: boolean | undefined) {
     switch (_online) {
@@ -16,6 +17,9 @@
         return "border-zinc-500 bg-zinc-700 text-zinc-100";
     }
   }
+  let statusText =
+    $derived(online === true ? "ONLINE" : online === false ? "OFFLINE" : "UNKNOWN");
+  let badgeClass = $derived(switchBadgeClass(online));
 </script>
 
 <code
