@@ -13,10 +13,10 @@
   let isActive = $derived($page.url.pathname === href);
   let activeClass = $derived(isActive
     ? "bg-zinc-200 dark:bg-zinc-800"
-    : "hover:bg-zinc-300 hover:dark:bg-zinc-700");
+    : "hover:bg-zinc-300 dark:hover:bg-zinc-700");
 </script>
 
-<a {href} class="block rounded-sm p-2 {activeClass} group">
+<a {href} class="block rounded-xs p-2 {activeClass} group">
   <div
     class="border-s-4 ps-2 {isActive
       ? 'border-orange-500'

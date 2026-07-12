@@ -4,7 +4,7 @@
 </script>
 
 <footer
-  class="flex justify-between rounded bg-zinc-100 p-2 [grid-area:footer] dark:bg-zinc-900"
+  class="flex justify-between rounded-sm bg-zinc-100 p-2 [grid-area:footer] dark:bg-zinc-900"
 >
   <span>Zerotier: <code>{$nodeStatus?.version}</code></span>
   {#await getTauriVersion() then tauriVersion}

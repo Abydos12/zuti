@@ -21,11 +21,11 @@
 </script>
 
 <div
-  class="inline-flex justify-between gap-2 rounded bg-zinc-300 text-center dark:bg-zinc-800"
+  class="inline-flex justify-between gap-2 rounded-sm bg-zinc-300 text-center dark:bg-zinc-800"
 >
   <span class="ps-2">{label}</span>
   <code
-    class="rounded border-2 px-2 font-semibold dark:bg-opacity-75 {badgeClass}"
+    class="rounded-sm border-2 px-2 font-semibold dark:bg-opacity-75 {badgeClass}"
   >
     {#if value === true}
       ON

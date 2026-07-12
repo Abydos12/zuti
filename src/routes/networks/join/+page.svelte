@@ -48,7 +48,7 @@
     />
     <button
       type="submit"
-      class="rounded-sm bg-zinc-200 px-4 py-1 text-center hover:bg-zinc-300 dark:bg-zinc-800 hover:dark:bg-zinc-700 hover:dark:text-white"
+      class="rounded-xs bg-zinc-200 px-4 py-1 text-center hover:bg-zinc-300 dark:bg-zinc-800 dark:hover:bg-zinc-700 dark:hover:text-white"
     >
       Join
     </button>

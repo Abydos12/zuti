@@ -19,6 +19,6 @@
   let badgeClass = $derived(switchClass(status));
 </script>
 
-<code class="rounded-sm border px-2 font-semibold {badgeClass}">
+<code class="rounded-xs border px-2 font-semibold {badgeClass}">
   {status}
 </code>

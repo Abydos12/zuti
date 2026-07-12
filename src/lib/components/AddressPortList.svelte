@@ -22,7 +22,7 @@
 <ul class="flex flex-wrap gap-2">
   {#each Object.entries(group) as [ip, ports]}
     <li
-      class="flex items-center gap-2 rounded-sm border border-zinc-300 bg-zinc-200 p-2 dark:border-zinc-600 dark:bg-zinc-800"
+      class="flex items-center gap-2 rounded-xs border border-zinc-300 bg-zinc-200 p-2 dark:border-zinc-600 dark:bg-zinc-800"
     >
       <code class="text-teal-600 dark:text-teal-400">
         {ip}

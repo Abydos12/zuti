@@ -9,7 +9,7 @@
 </script>
 
 <div
-  class="rounded-sm border border-zinc-200 bg-zinc-100 p-2 dark:border-zinc-800 dark:bg-zinc-900"
+  class="rounded-xs border border-zinc-200 bg-zinc-100 p-2 dark:border-zinc-800 dark:bg-zinc-900"
 >
   <h2 class="font-mono font-semibold uppercase text-orange-500">Routes</h2>
   <table class="text-start">
